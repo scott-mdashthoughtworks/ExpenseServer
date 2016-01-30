@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99d5354aeca24e72bd5e56973878532d" Name="Diagram1">
+        <EntityTypeShape EntityType="MDashExpenseModel.ExpCategory" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDashExpenseModel.ExpenseRecord" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDashExpenseModel.ExpPersonalCategory" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDashExpenseModel.ExpUser" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="MDashExpenseModel.FK_ExpenseRecord_ExpCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="MDashExpenseModel.FK_ExpenseRecord_ExpPersonalCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="MDashExpenseModel.FK_ExpenseRecord_ExpUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MDashExpenseModel.FK_ExpPersonalCategories_ExpUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
