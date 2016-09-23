@@ -4,7 +4,21 @@
                 callback(response.data);
             });
         }
+    this.post = function (target, content, callback, errorback) {
+       // var data = $.param(content);
+        var config = {
+       //     headers: {
+       //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+       //     }
+        };
+        return $http.post(target, content, config)
+            .then(function (response) {
+                callback(response.data);
+            }, function (response) {
 
+                errorback(response);
+            });
+    }
    
 });
 

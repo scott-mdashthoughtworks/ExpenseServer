@@ -2,23 +2,82 @@
 @{
     ViewBag.Title = "Expenses";
 }
-<div ng-app="expenseApp" ng-controller="expCtlr">
-    <ul>
-        <li ng-repeat="x in ExpCategories" >
-            {{ x.Name}}
-        </li>
-    </ul>
-</div>
 <h2>Expenses</h2>
+<style>
+    .myGrid {
+        width: 800px;
+        height: 250px;
+    }
+</style>
+<div ng-app="expenseApp" ng-controller="expCtlr">
+    <div id="userselection">
+        Current User: {{displayUserItem(selectedUser)}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="selectuserbutton"
+                ng-click="toggleUserSelection()">
+            Select User
+        </button>
+        <span id="selectuserthing" hidden>
+            <br />
+            <select ng-model="selectedUser"
+                    ng-change="changeUser()"
+                    ng-options="displayUserItem(item) for item in expUsers"></select>
+        </span>
+    </div>
+    <br />
+    <div id="grid1" ui-grid="expGridOptions" class="myGrid"></div>
+
+    <button ng-click="loadNewExp()">Add</button>
+    <div id="expBlock" hidden>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td><input name="expdate" id="cexpdate" ng-model="currentExp.ExpDate" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td><input name="expamt" id="expamt" ng-model="currentExp.Amount" type="number" /></td>
+            </tr>
+            <!--tr>
+                <td>Description</td>
+                <td><input name="expdesc" id="expdesc" ng-model="currentExp.Description" type="text" /></td>
+            </ tr>-->
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select ng-model="selectedCat"
+                            ng-change="changeCurrentExpCat()"
+                            ng-options="item.Name for item in ExpCategories" />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button ng-click="SaveExp()">Save</button></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
 @section scripts {
-<script src="~/Scripts/angular.bundled.min.js"></script>
-<script>
-    var app = angular.module("expenseApp", []);
-</script>
-<script src="~/Scripts/Angular/MainApp.js"></script>
-<script src="~/Scripts/Angular/ExpServices.js"></script>
+    <script src="~/Scripts/angular.bundled.min.js"></script>
+    <script>
+        var app = angular.module("expenseApp", ['ui.grid', 'ui.grid.edit']);
+    </script>
+
+    <link rel="styleSheet" href="~/Content/ui-grid.css" />
+    <script src="~/Scripts/ui-grid.js"></script>
+    <script src="~/Scripts/Angular/MainApp.js"></script>
+    <script src="~/Scripts/Angular/ExpServices.js"></script>
 
     </script>
- 
-    }
- 
+
+}
